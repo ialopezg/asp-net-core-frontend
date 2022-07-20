@@ -1,6 +1,6 @@
 ﻿namespace Frontend.Themes.Libraries
 {
-    public class ThemeSettings
+    class ThemeSettings
     {
         public static void initialize(IConfiguration configuration)
         {

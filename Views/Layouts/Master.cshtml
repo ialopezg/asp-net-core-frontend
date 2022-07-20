@@ -4,22 +4,43 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - Frontend</title>
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="" />
+
+    <!--begin::Favicon-->
+    <link rel="shortcut icon" href="@Theme.GetFavicon()" />
+    <!--end::Favicon-->
+
+    <!--begin::Fonts-->
+    @foreach (string font in Theme.GetFonts())
+    {
+        <link rel="stylesheet" href="@font" />
+    }
+    <!--end::Fonts-->
+
+    <!--begin::Vendor Stylesheets Assets (optional)-->
+    @foreach (string stylesheet in Theme.GetVendors("css"))
+    {
+        <link rel="stylesheet" type="text/css" href="@stylesheet" />
+    }
+    <!--end::Vendor Stylesheets Assets-->
+
+    <!--begin::Global Stylesheets Assets (mandatory)-->
+    <!--end::Global Stylesheets Assets (mandatory)-->
+
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/Frontend.styles.css" asp-append-version="true" />
 </head>
-<body>
-    <partial name="~/Views/Partials/_Init.cshtml" />
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2022 - Frontend - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
-    </footer>
-</body>
+<!--begin::Body-->
+<!body @Html.Raw(Theme.SetHtmlAttributes("body"))>
+    <partial name="~/Views/Partials/_Init.cshtml" />
+    
+    @RenderBody()
+</!body>
+<!--end::Body-->
 </html>

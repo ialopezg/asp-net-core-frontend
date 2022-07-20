@@ -1,9 +1,11 @@
 ﻿@{
     Layout = "~/Views/Layouts/Master.cshtml";
-    ViewData["Title"] = "Register";
 }
 
-<div>
-    <p>Auth Layout Page</p>
-    @RenderBody()
+<!--begin::AuthLayout-->
+<div class="d-flex flex-column flex-root">
+    <div class="d-flex">
+        @RenderBody()
+    </div>
 </div>
+<!--end::AuthLayout-->
