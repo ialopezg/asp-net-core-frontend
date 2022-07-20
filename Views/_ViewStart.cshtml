@@ -1,3 +1,6 @@
-﻿@{
-    Layout = "_Layout";
+﻿@using Frontend.Themes.Libraries;
+@inject Theme Theme;
+
+@{
+    Layout = Theme.GetView("DefaultDarkSidebar.cshtml");
 }

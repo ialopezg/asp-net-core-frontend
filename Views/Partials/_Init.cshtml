@@ -1,0 +1,18 @@
+﻿<!--begin::Theme mode setup on page load-->
+<script>
+if (document.documentElement) {
+    const defaultMode = "@Theme.GetMode()";
+    const name = document.body.getAttribute("data-theme-name");
+    let themeMode = localStorage.getItem(`theme_${name !== null ? name + '_' : ''}mode_value`);
+
+    if (themeMode === null) {
+        if (defaultMode === 'system') {
+            themeMode = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        } else {
+            themeMode = defaultMode;
+        }
+    }
+    document.documentElement.setAttribute('data-theme', themeMode);
+}
+</script>
+<!--end::Theme mode setup on page load-->
