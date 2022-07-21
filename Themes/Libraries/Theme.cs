@@ -19,7 +19,7 @@
                 return name;
             }
 
-            return $"{ThemeSettings.Config?.AssetsPath}/{name}";
+            return $"/{ThemeSettings.Config?.AssetsPath}/{name}";
         }
 
         /// <summary>
