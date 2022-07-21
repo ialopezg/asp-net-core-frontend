@@ -17,7 +17,7 @@ Compatible with ASP .Net Core.
 
 ### Future
 
-CoreJS - Frontend, is very much still a work in progress. There is still some things to finish:
+ASP .Net Core - Frontend, is very much still a work in progress. There is still some things to finish:
 
 - `Preferences`: Global preferences.
 - `Themes`: UI Theme manager.
