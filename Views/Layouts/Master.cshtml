@@ -1,11 +1,11 @@
 ﻿<!DOCTYPE html>
-<html lang="en">
+<html @Html.Raw(Theme.SetHtmlAttributes("html"))>
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - Frontend</title>
-    <meta name="description" content="" />
-    <meta name="keywords" content="" />
+    <meta name="description" content="Frontend Implementation for ASP .Net Core & CoreJS" />
+    <meta name="keywords" content="asp, net, core, frontend, corejs" />
     <meta property="og:locale" content="en_US" />
     <meta property="og:type" content="article" />
     <meta property="og:title" content="" />
@@ -44,7 +44,7 @@
 </head>
 
 <!--begin::Body-->
-<!body @Html.Raw(Theme.SetHtmlAttributes("body"))>
+<!body @Html.Raw(Theme.SetHtmlAttributes("body")) class="@Html.Raw(Theme.SetHtmlClasses("body"))">
     <partial name="~/Views/Partials/_Init.cshtml" />
     
     @RenderBody()

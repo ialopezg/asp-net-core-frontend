@@ -53879,7 +53879,7 @@ a {
 :root,
 [data-theme=light] {
     --kt-app-bg-color: #f5f8fa;
-    --kt-app-blank-bg-color: #ffffff;
+    --app-blank-bg-color: #ffffff;
     --kt-app-header-base-bg-color: #ffffff;
     --kt-app-header-base-bg-color-mobile: #ffffff;
     --kt-app-header-base-box-shadow: 0px 10px 30px 0px rgba(82, 63, 105, 0.05);
@@ -53896,7 +53896,7 @@ a {
 
 [data-theme=dark] {
     --kt-app-bg-color: #151521;
-    --kt-app-blank-bg-color: #151521;
+    --app-blank-bg-color: #151521;
     --kt-app-header-base-bg-color: #1e1e2d;
     --kt-app-header-base-bg-color-mobile: #1e1e2d;
     --kt-app-header-base-box-shadow: none;
@@ -53967,7 +53967,7 @@ body,
 }
 
 .app-blank {
-    background-color: var(--kt-app-blank-bg-color);
+    background-color: var(--app-blank-bg-color);
 }
 
 [data-kt-app-reset-transition=true] * {
@@ -55852,7 +55852,7 @@ body,
 
 html:not([data-theme=dark]) {
     --kt-app-bg-color: #f5f8fa;
-    --kt-app-blank-bg-color: #ffffff;
+    --app-blank-bg-color: #ffffff;
     --kt-app-header-base-bg-color: #ffffff;
     --kt-app-header-base-bg-color-mobile: #ffffff;
     --kt-app-header-base-box-shadow: 0px 10px 30px 0px rgba(82, 63, 105, 0.05);
@@ -55881,7 +55881,7 @@ html:not([data-theme=dark]) {
 
 [data-theme=dark] {
     --kt-app-bg-color: #151521;
-    --kt-app-blank-bg-color: #151521;
+    --app-blank-bg-color: #151521;
     --kt-app-header-base-bg-color: #1e1e2d;
     --kt-app-header-base-bg-color-mobile: #1e1e2d;
     --kt-app-header-base-box-shadow: none;

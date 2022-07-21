@@ -3,6 +3,22 @@
     public class Theme : ITheme
     {
         /// <summary>
+        /// Add HTML class for given directive name.
+        /// </summary>
+        /// <param name="scope">Scope name.</param>
+        /// <param name="className">Class name.</param>
+        public void AddHtmlClass(string scope, string className)
+        {
+            var classes = new List<string>();
+            if (_htmlClasses.ContainsKey(scope))
+            {
+                classes = _htmlClasses[scope].ToList();
+            }
+            classes.Add(className);
+            _htmlClasses[scope] = classes.ToArray();
+        }
+
+        /// <summary>
         /// Extend given CSS file name with RTL support.
         /// </summary>
         /// <param name="name">CSS file name.</param>
@@ -136,8 +152,8 @@
         /// Sets HTML attributes with given scope for the HTML template.
         /// </summary>
         /// <param name="scope">Scope name</param>
-        /// <returns>A string value containing the attributes if exists, otherwise an empty string.</returns>
-        public string? SetHtmlAttributes(string scope)
+        /// <returns>A string value containing the attributes, if exists; otherwise an empty string.</returns>
+        public string SetHtmlAttributes(string scope)
         {
             var list = new List<string>();
             if (_htmlAttributes.ContainsKey(scope))
@@ -151,23 +167,47 @@
                 return String.Join(" ", list);
             }
 
-            return null;
+            return String.Empty;
+        }
+
+        /// <summary>
+        /// Sets HTML classes for given scope.
+        /// </summary>
+        /// <param name="scope">Scope name.</param>
+        /// <returns>A string value containing the scoped classes, if exists; otherwise an empty string.</returns>
+        public string SetHtmlClasses(string scope)
+        {
+            if (_htmlClasses.ContainsKey(scope))
+            {
+                return String.Join(" ", _htmlClasses[scope]);
+            }
+
+            return String.Empty;
         }
 
         /// <summary>
         /// Whether text direction is RTL.
         /// </summary>
-        /// <returns><c>true</c> if text direction is RTL; otherwise <c>false</c>.</returns>
         public bool IsRtlDirection
         {
-            get { return _textDirection.ToLower() == "rtl"; }
+            get { return _textDirection == TextDirection.RTL; }
         }
 
-        private readonly List<string> _cssFiles = new List<string>();
+        /// <summary>
+        /// Gets or set text direction.
+        /// </summary>
+        public TextDirection TextDirection
+        {
+            get { return _textDirection; }
+            set { _textDirection = value; }
+        }
+
+        private readonly List<string> _cssFiles = new();
         private readonly SortedDictionary<string, SortedDictionary<string, string>> _htmlAttributes = new();
-        private readonly List<string> _scriptFiles = new List<string>();
+        private readonly SortedDictionary<string, string[]> _htmlClasses = new();
+        private readonly List<string> _scriptFiles = new();
         private readonly string _mode = "system";
-        private readonly string _textDirection = "ltr";
+        private TextDirection _textDirection = TextDirection.LTR;
         private readonly List<string> _vendorFiles = new();
     }
 }
