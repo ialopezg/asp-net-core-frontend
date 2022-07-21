@@ -29,11 +29,18 @@
     <!--end::Vendor Stylesheets Assets-->
 
     <!--begin::Global Stylesheets Assets (mandatory)-->
+    @foreach (string stylesheet in Theme.GetGlobalAssets("css"))
+    {
+        <link rel="stylesheet" type="text/css" href="@stylesheet" />
+    }
     <!--end::Global Stylesheets Assets (mandatory)-->
 
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/Frontend.styles.css" asp-append-version="true" />
+    <!--begin::Custom Stylesheets Assets (optional)-->
+    @foreach (string stylesheet in Theme.GetCssFiles())
+    {
+        <link rel="stylesheet" type="text/css" href="@stylesheet" />
+    }
+    <!--end::Custom Stylesheets Assets (optional)-->
 </head>
 
 <!--begin::Body-->
@@ -41,6 +48,27 @@
     <partial name="~/Views/Partials/_Init.cshtml" />
     
     @RenderBody()
+
+    <!--begin::Global Scripts (mandatory)-->
+    @foreach (string file in Theme.GetGlobalAssets("scripts"))
+    {
+        <script src="@file"></script>
+    }
+    <!--end::Global Scripts (mandatory)-->
+
+    <!--begin::Vendors Javascript(optional)-->
+    @foreach (string file in Theme.GetVendors("scripts"))
+    {
+        <script src="@file"></script>
+    }
+    <!--end::Vendors Javascript-->
+
+    <!--begin::Custom Javascript(optional)-->
+    @foreach (string file in Theme.GetJavaScriptFiles())
+    {
+        <script src="@file"></script>
+    }
+    <!--end::Custom Javascript-->
 </!body>
 <!--end::Body-->
 </html>

@@ -2,13 +2,18 @@
 {
     public class Theme : ITheme
     {
+        /// <summary>
+        /// Extend given CSS file name with RTL support.
+        /// </summary>
+        /// <param name="name">CSS file name.</param>
+        /// <returns>A string value.</returns>
         public string ExtendCssFilename(string name)
         {
             return IsRtlDirection ? name.Replace(".css", ".rtl.css") : name;
         }
 
         /// <summary>
-        /// Gets the assets path for given resource.
+        /// Gets the asset path for given resource.
         /// </summary>
         /// <param name="name">Resource name.</param>
         /// <returns>A string value.</returns>
@@ -21,6 +26,12 @@
 
             return $"/{ThemeSettings.Config?.AssetsPath}/{name}";
         }
+
+        /// <summary>
+        /// Get CSS files for current theme.
+        /// </summary>
+        /// <returns>An array containing CSS files; otherwise an empty array.</returns>
+        public string[] GetCssFiles() => _cssFiles.ToArray();
 
         /// <summary>
         /// Gets the favicon file for current theme.
@@ -63,12 +74,21 @@
                     if (scope == "css")
                     {
                         files.Add(GetAssetPath(ExtendCssFilename(file)));
+                    } else
+                    {
+                        files.Add(GetAssetPath(file));
                     }
                 }
             }
 
             return files.ToArray();
         }
+
+        /// <summary>
+        /// Get script files for current theme.
+        /// </summary>
+        /// <returns>An array containing script files; otherwise an empty array.</returns>
+        public string[] GetJavaScriptFiles() => _scriptFiles.ToArray();
 
         /// <summary>
         /// Gets theme mode.
@@ -110,10 +130,7 @@
         /// Gets the path of a themed view by its name.
         /// </summary>
         /// <returns>A string value containing the path of the view.</returns>
-        public string GetView(string name)
-        {
-            return $"{ThemeSettings.Config?.ViewsPath}/{name}";
-        }
+        public string GetView(string name) => $"{ThemeSettings.Config?.ViewsPath}/{name}";
 
         /// <summary>
         /// Sets HTML attributes with given scope for the HTML template.
@@ -146,7 +163,9 @@
             get { return _textDirection.ToLower() == "rtl"; }
         }
 
-        private readonly SortedDictionary<string, SortedDictionary<string, string>> _htmlAttributes = new SortedDictionary<string, SortedDictionary<string, string>>();
+        private readonly List<string> _cssFiles = new List<string>();
+        private readonly SortedDictionary<string, SortedDictionary<string, string>> _htmlAttributes = new();
+        private readonly List<string> _scriptFiles = new List<string>();
         private readonly string _mode = "system";
         private readonly string _textDirection = "ltr";
         private readonly List<string> _vendorFiles = new();

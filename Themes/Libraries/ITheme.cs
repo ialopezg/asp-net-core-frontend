@@ -13,6 +13,19 @@
         public string ExtendCssFilename(string name);
 
         /// <summary>
+        /// Gets the asset path for given resource.
+        /// </summary>
+        /// <param name="name">Resource name.</param>
+        /// <returns>A string value.</returns>
+        public string GetAssetPath(string name);
+
+        /// <summary>
+        /// Get CSS files for current theme.
+        /// </summary>
+        /// <returns>An array containing CSS files; otherwise an empty array.</returns>
+        public string[] GetCssFiles();
+
+        /// <summary>
         /// Gets the favicon file for current theme.
         /// </summary>
         /// <returns>A string value.</returns>
@@ -29,6 +42,12 @@
         /// </summary>
         /// <returns>An array containing the asset list, if exists; otherwise an empty array.</returns>
         public string[] GetGlobalAssets(string scope);
+
+        /// <summary>
+        /// Get script files for current theme.
+        /// </summary>
+        /// <returns>An array containing script files; otherwise an empty array.</returns>
+        public string[] GetJavaScriptFiles();
 
         /// <summary>
         /// Gets the default theme mode.
